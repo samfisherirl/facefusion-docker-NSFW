@@ -1,8 +1,8 @@
 services:
- facefusion-cuda:
+ facefusion-tensorrt:
   build:
    context: .
-   dockerfile: Dockerfile.tensorrt
+   dockerfile: Dockerfile
   command: [ 'python', 'facefusion.py', 'run', '--execution-providers', 'tensorrt' ]
   volumes:
   - .assets:/facefusion/.assets
@@ -15,4 +15,5 @@ services:
     reservations:
      devices:
      - driver: nvidia
+       count: all
        capabilities: [ gpu, video ]
